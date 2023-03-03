@@ -1,0 +1,98 @@
+body {
+    margin: auto;
+}
+
+.menu-wrap {
+    width: auto;
+    background-image: linear-gradient(216deg,#ca4b3d 57%,#232323 100%)!important;
+    margin: auto;
+    height: 100px;
+}
+
+.menu {
+    padding-top: 20px;
+    padding-left: 300px;
+}
+
+.nav-bar, .nav-bar-link {
+    display: inline;
+    color: white;
+    font-size: 22px;
+    justify-content: space-between;
+    margin-right: 25px;
+}
+
+.nav-bar-link {
+    text-decoration: none;
+    text-align: center;
+}
+
+.nav-bar-link:hover {
+    color: gold;
+    text-decoration: underline;
+}
+
+footer {
+    width: auto;
+    background-image: linear-gradient(216deg,#857c7b 57%,#232323 100%)!important;
+    margin: auto;
+    height: 300px;
+}
+
+.footer-wrap {
+    display: flex;
+    padding-left: 450px;
+}
+
+.footer-bar-link {
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 16px;
+}
+
+.footer-bar-link:hover {
+    color: goldenrod;
+    text-decoration: underline;
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+.footer-menu-first, .footer-menu-second, .footer-menu-third {
+    margin-right: 75px;
+    padding-top: 50px;
+}
+
+img {
+    height: auto;
+    width: 100%;
+}
+
+
+.motto-block {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.motto {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 900;
+    font-size: 48px;
+}
+
+.motto:hover {
+    color: goldenrod;
+}
+
+.about-header{
+    margin-left: 45%;
+}
+
+.about-content {
+    margin: 25px;
+}
