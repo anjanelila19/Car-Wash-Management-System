@@ -5,6 +5,7 @@ pipeline {
         registry = "lilaramdocker/myprojectdemo" //To push an image to Docker Hub, you must first name your local image using your Docker Hub username and the repository name that you created through Docker Hub on the web.
         registryCredential = 'docker-hub-login'
         dockerImage = ''
+        container_name='my_app'
     }
     agent any
     stages {
@@ -16,9 +17,9 @@ pipeline {
 
         stage ('Stop previous running container'){
             steps{
-                 sh returnStatus: true, script: 'docker stop $(docker ps -a | grep ${JOB_NAME} | awk \'{print $1}\')'
+                 sh returnStatus: true, script: 'docker stop $(docker ps -a | grep ${container_name} | awk \'{print $1}\')'
                  sh returnStatus: true, script: 'docker rmi $(docker images | grep ${registry} | awk \'{print $3}\') --force' //this will delete all images
-                 sh returnStatus: true, script: 'docker rm ${JOB_NAME}'
+                 sh returnStatus: true, script: 'docker rm ${container_name}'
                   sh 'ls'
                   
             }
@@ -40,7 +41,7 @@ pipeline {
         stage('Test - Run Docker Container on Jenkins node') {
            steps {
 
-                sh label: '', script: "docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
+                sh label: '', script: "docker run -d --name ${container_name} -p 5000:5000 ${img}"
           }
         }
 
@@ -57,10 +58,10 @@ pipeline {
         stage('Deploy to Test Server') {
             steps {
                 script {
-                    def stopcontainer = "docker stop ${JOB_NAME}"
-                    def delcontName = "docker rm ${JOB_NAME}"
+                    def stopcontainer = "docker stop ${container_name}"
+                    def delcontName = "docker rm ${container_name}"
                     def delimages = 'docker image prune -a --force'
-                    def drun = "docker run -d --name ${JOB_NAME} -p 5000:5000 ${img}"
+                    def drun = "docker run -d --name ${container_name} -p 5000:5000 ${img}"
                     println "${drun}"
                     sshagent(['docker-test']) {
                         sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no docker@192.168.1.16 ${stopcontainer} "
