@@ -69,7 +69,7 @@ pipeline {
                         sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no docker@3.76.216.225 ${delimages}"
 
                     // some block
-                        sh "ssh -o StrictHostKeyChecking=no docker@3.76.216.225 ${drun}"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@3.76.216.225 ${drun}"
                     }
                 }
             }
