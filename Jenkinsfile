@@ -63,13 +63,13 @@ pipeline {
                     def delimages = 'docker image prune -a --force'
                     def drun = "docker run -d --name ${container_name} -p 5000:5000 ${img}"
                     println "${drun}"
-                    sshagent(['docker-test']) {
-                        sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no docker@192.168.1.16 ${stopcontainer} "
-                        sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no docker@192.168.1.16 ${delcontName}"
-                        sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no docker@192.168.1.16 ${delimages}"
+                    sshagent(['target_server']) {
+                        sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no docker@3.76.216.225 ${stopcontainer} "
+                        sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no docker@3.76.216.225 ${delcontName}"
+                        sh returnStatus: true, script: "ssh -o StrictHostKeyChecking=no docker@3.76.216.225 ${delimages}"
 
                     // some block
-                        sh "ssh -o StrictHostKeyChecking=no docker@192.168.1.16 ${drun}"
+                        sh "ssh -o StrictHostKeyChecking=no docker@3.76.216.225 ${drun}"
                     }
                 }
             }
